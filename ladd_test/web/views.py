@@ -8,5 +8,8 @@ from .models import web_info
 
 def web_detail(request, web_id):
     web = get_object_or_404(web_info, pk=web_id)
-
     return HttpResponse(web.web_name)
+
+def test(request):
+    aaa = web_info.objects.all()
+    return render(request,"web/index.html",context={'post_list':aaa})
