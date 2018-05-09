@@ -1,6 +1,38 @@
-{% include "web\base.html" %}
+{% include "web/base.html" %}
+
+<section class="docs">
+    <div class="grid">
+    <div class="docs-nav-mobile unit whole show-on-mobiles">
+        <select onchange="if (this.value) window.location.href=this.value">
+        <optgroup label="当日数据">
+          <option>ip数量</option>
+          <option>百度蜘蛛</option>
+          <option>百度收录</option>
+          <option>当日收录</option>
+          <option>网站状态</option>
+        </optgroup>
+        </select>
+    </div>
+    <div class="unit four-fifths">
+        <article>
+        {{ data }}
+        </article>
+    </div>
+    <div class="unit one-fifth hide-on-mobiles">
+        <h4>当日数据</h4>
+        <aside>
+        <ul>
+          <li class=""><a href="today_ip.html">ip数量</a></li>
+          <li class=""><a href="today_spider.html">百度蜘蛛</a></li>
+          <li class=""><a href="today_baidu_record.html">百度收录</a></li>
+          <li class=""><a href="today_record.html">当日收录</a></li>
+          <li class=""><a href="today_status.html">网站状态</a></li>
+        </ul>
+
+        </aside>
+    </div>
 
 
-<body>
-<a>his</a>
-</body>
+    <div class="clear"></div>
+    </div>
+</section>
