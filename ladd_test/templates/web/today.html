@@ -1,35 +1,66 @@
 {% include "web/base.html" %}
 
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Django Highcharts Example</title>
-</head>
 <body>
-  <div id="container"></div>
-  <script src="https://code.highcharts.com/highcharts.src.js"></script>
-  <script>
-    Highcharts.chart('container', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Historic World Population by Region'
-        },
-        xAxis: {
-            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
-        },
-        series: [{
-            name: 'Year 1800',
-            data: [107, 31, 635, 203, 2]
-        }, {
-            name: 'Year 1900',
-            data: [133, 156, 947, 408, 6]
-        }, {
-            name: 'Year 2012',
-            data: [1052, 954, 4250, 740, 38]
-        }]
-    });
-  </script>
+    <!-- 图表容器 DOM -->
+    <div id="container1" style="width:700px;margin:0 auto;"></div>&nbsp
+
+    <div id="container2" style="width:700px;margin:0 auto;"></div>
+    <!-- 引入 highcharts.js -->
+    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script>
+        var options1 = {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: '测试图表'
+            },
+
+            xAxis: {
+                type: 'linear',
+                categories: ['web1', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天']
+            },
+            yAxis: {
+                title: {
+                    text: '访问量'
+                },
+                min: 0,
+                minorGridLineWidth: 0,
+                gridLineWidth: 0,
+                alternateGridColor: null
+            },
+            series: [{
+                name: 'jiaokeshu8',
+                data: [155295, 443202, 4.3, 5.2, 5.4, 4.7, 3.5,155295, 443202, 4.3, 5.2, 5.4, 4.7, 3.5,155295, 443202, 4.3, 5.2, 5.4, 4.7, 3.5,155295, 443202, 4.3, 5.2, 5.4, 4.7, 3.5,]
+            }]
+
+        };
+        var options2 = {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '测试图表'
+            },
+
+            xAxis: {
+                type: 'linear',
+                categories: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天']
+            },
+            yAxis: {
+                title: {
+                    text: '访问量'
+                },
+                min: 0,
+                minorGridLineWidth: 0,
+                gridLineWidth: 0,
+                alternateGridColor: null
+            },
+            series: {{ data }}
+        };
+        // 图表初始化函数
+        var chart1 = Highcharts.chart('container1', options1);
+        var chart2 = Highcharts.chart('container2', options2);
+    </script>
+
 </body>
-</html>
