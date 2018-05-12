@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import web_info
-
+from django.utils import timezone
 
 # Create your views here.
 
