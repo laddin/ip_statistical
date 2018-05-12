@@ -8,6 +8,8 @@
 <div id="container2" style="width:1200px;margin:0 auto;"></div>
 &nbsp
 <div id="container3" style="width:1200px;margin:0 auto;"></div>
+&nbsp
+<div id="container4" style="width:1200px;margin:0 auto;"></div>
 <!-- 引入 highcharts.js -->
 <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
 <script>
@@ -34,7 +36,8 @@
         },
         series: [{
             name: '{{ today_date }}',
-            data: {{ today_ip_num }}
+            data: {{ today_ip_num }},
+            color:'#ABEBC6'
         }]
 
     };
@@ -61,7 +64,8 @@
         },
         series: [{
             name: '{{ today_date }}',
-            data: {{ today_spider_num }}
+            data: {{ today_spider_num }},
+            colorByPoint: true
         }]
     };
     var options3 = {
@@ -69,7 +73,7 @@
             type: 'column'
         },
         title: {
-            text: '当日百度收录'
+            text: '百度收录'
         },
 
         xAxis: {
@@ -87,13 +91,42 @@
         },
         series: [{
             name: '{{ today_date }}',
-            data: {{ today_record_num }}
+            data: {{ today_record_sum }},
+            color:'#85C1E9'
+        }]
+    };
+    var options4 = {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '当日收录'
+        },
+
+        xAxis: {
+            type: 'linear',
+            categories: {{ http_name |safe}}
+        },
+        yAxis: {
+            title: {
+                text: '收录数量'
+            },
+            min: 0,
+            minorGridLineWidth: 0,
+            gridLineWidth: 0,
+            alternateGridColor: null
+        },
+        series: [{
+            name: '{{ today_date }}',
+            data: {{ today_record_num }},
+            color:'#F5CBA7'
         }]
     };
     // 图表初始化函数
     var chart1 = Highcharts.chart('container1', options1);
     var chart2 = Highcharts.chart('container2', options2);
     var chart3 = Highcharts.chart('container3', options3);
+    var chart4 = Highcharts.chart('container4', options4);
 </script>
 
 </body>
