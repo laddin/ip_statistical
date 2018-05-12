@@ -24,10 +24,12 @@ def today(request):
     today_spider_num = [1231, 12412, 1231, 123, 5235, 123, 52341, 124, 54, 213, 1231, 12412, 1231, 123, 5235, 123,
                         52341, 124, 54, 213]
     today_record_num = [123, 2341, 43, 36, 213, 123, 12, 312]
+    today_record_sum = [1, 23, 4, 5, 6, 7, 8, 9]
     return render(request, "web/today.html", {'http_name': http_name,
                                               'today_date': today_date,
                                               'today_ip_num': today_ip_num,
                                               'today_spider_num': today_spider_num,
+                                              'today_record_sum': today_record_sum,
                                               'today_record_num': today_record_num,
                                               })
 
