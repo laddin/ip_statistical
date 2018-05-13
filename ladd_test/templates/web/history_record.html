@@ -1,0 +1,61 @@
+{% include "web/main.html" %}
+
+<body>
+<div id="page-wrapper">
+    <div class="row">
+        <div id="container1" ></div>
+        <div id="container2" ></div>
+        <script>
+
+        var options1 = {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: '7日收录统计'
+            },
+
+            xAxis: {
+                type: 'linear',
+                categories: {{ history_x_Seven |safe}}
+            },
+            yAxis: {
+                title: {
+                    text: '收录数量'
+                },
+                min: 0,
+                minorGridLineWidth: 0,
+                gridLineWidth: 0,
+                alternateGridColor: null
+            },
+            series: {{ data_Seven |safe }}
+        };
+        var options2 = {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: '历史收录统计'
+            },
+
+            xAxis: {
+                type: 'linear',
+                categories: {{ history_x_all |safe}}
+            },
+            yAxis: {
+                title: {
+                    text: '收录数量'
+                },
+                min: 0,
+                minorGridLineWidth: 0,
+                gridLineWidth: 0,
+                alternateGridColor: null
+            },
+            series: {{ data |safe }}
+        };
+        var chart1 = Highcharts.chart('container1', options1);
+        var chart2 = Highcharts.chart('container2', options2);
+        </script>
+    </div>
+</div>
+</body>

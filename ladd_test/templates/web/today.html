@@ -1,17 +1,21 @@
-{% include "web/base.html" %}
+{% include "web/main.html" %}
 
 
 <body>
+<div id="page-wrapper">
+    <div class="row">
 <!-- 图表容器 DOM -->
-<div id="container1" style="width:1200px;margin:0 auto;"></div>
+<!--div id="container1" style="width:1200px;margin:0 auto;"></div-->
+<div id="container1" ></div>
 &nbsp
-<div id="container2" style="width:1200px;margin:0 auto;"></div>
+<div id="container2" ></div>
 &nbsp
-<div id="container3" style="width:1200px;margin:0 auto;"></div>
+<div id="container3" ></div>
 &nbsp
-<div id="container4" style="width:1200px;margin:0 auto;"></div>
+<div id="container4" ></div>
+
 <!-- 引入 highcharts.js -->
-<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+
 <script>
     var options1 = {
         chart: {
@@ -128,5 +132,6 @@
     var chart3 = Highcharts.chart('container3', options3);
     var chart4 = Highcharts.chart('container4', options4);
 </script>
-
+        </div>
+    </div>
 </body>
