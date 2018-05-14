@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from . import service
 from .models import web_info
 
+
 from django.utils import timezone
 
 
@@ -12,22 +13,29 @@ from django.utils import timezone
 
 
 def index(request):
-
+    #aaa = web_info.objects.filter(web_date="2018-05-13")
+    #aaa = web_info.objects.filter(web_date__range=["2018-05-07","2018-05-13"]).values('web_name','web_ip_phone','web_ip_pc')
+    aaa = list(web_info.objects.filter(web_date="2018-05-07").values('web_name', 'web_ip_phone',
+                                                                         'web_ip_pc', 'web_baidu_spider',
+                                                                         'web_baidu_record', 'web_baidu_today_recory'
+                                                                         ))
+    #print(aaa,type(aaa))
 
     return render(request, "web/index.html")
 
 
 # 当天数据
 def today(request):
-    today_date = timezone.now().strftime("%Y-%m-%d")
-
-    http_name = ['web1', 'web2', 'web3', 'web4', 'web1', 'web2', 'web3', 'web4', 'web1', 'web2', 'web3', 'web4', 'web1',
-                 'web2', 'web3', 'web4']
-    today_ip_num = [11, 22, 3, 44, 11, 22, 3, 44, 11, 22, 3, 44, 11, 22, 3, 44]
-    today_spider_num = [1231, 12412, 1231, 123, 5235, 123, 52341, 124, 54, 213, 1231, 12412, 1231, 123, 5235, 123,
-                        52341, 124, 54, 213]
-    today_record_num = [123, 2341, 43, 36, 213, 123, 12, 312]
-    today_record_sum = [1, 23, 4, 5, 6, 7, 8, 9]
+    today_date = service.history_x_Seven(1)
+    #print(today_date,type(today_date))
+    today_data_info = service.get_today_data(today_date[0])
+    http_name = today_data_info['web_name']
+    ip_pc = today_data_info['web_ip_pc']
+    ip_phone = today_data_info['web_ip_phone']
+    today_ip_num = list(map(lambda x: x[0]+x[1], zip(ip_pc, ip_phone)))
+    today_spider_num = today_data_info['web_baidu_spider']
+    today_record_num = today_data_info['web_baidu_today_recory']
+    today_record_sum = today_data_info['web_baidu_record']
     return render(request, "web/today.html", {
         'http_name': http_name,
         'today_date': today_date,
@@ -40,7 +48,7 @@ def today(request):
 
 # 历史IP
 def history_ip(request):
-    history_x_Seven =service.history_x_Seven()
+    history_x_Seven =service.history_x_Seven(7)
     data = [{'name': 'web1', 'data': [11, 2, 3, 4, 55]}, {'name': 'web2', 'data': [13, 4, 5, 36, 7]},
             {'name': 'web3', 'data': [5, 6, 72, 8, 19]}]
     return render(request, "web/history_ip.html", {
