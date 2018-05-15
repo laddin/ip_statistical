@@ -20,3 +20,7 @@ b = [4,2,1,5]
 
 v = list(map(lambda x: x[0]+x[1], zip(a, b)))
 print(v)
+
+
+aaaa = [{'name': 'web1', 'data': [11, 2, 3, 4, 55]}, {'name': 'web2', 'data': [13, 4, 5, 36, 7]},
+            {'name': 'web3', 'data': [5, 6, 72, 8, 19]}]
